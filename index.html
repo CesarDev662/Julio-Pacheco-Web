@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julio Pacheco | Tech Showcase</title>
+  <link rel="icon" type="text/ico" href="1320457.ico">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #1f1f1f, #2c2c2c);
+      box-shadow: 0 2px 10px rgba(0, 188, 212, 0.3);
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #00bcd4;
+    }
+
+    .buscador {
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-wrapper .icon {
+      position: absolute;
+      left: 10px;
+      color: #00bcd4;
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .input-wrapper input {
+      padding: 0.5rem 0.5rem 0.5rem 2rem;
+      width: 220px;
+      border: 1px solid #00bcd4;
+      border-radius: 8px;
+      background-color: #121212;
+      color: #e0e0e0;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .input-wrapper input:focus {
+      outline: none;
+      border-color: #00e5ff;
+      box-shadow: 0 0 8px #00e5ff66;
+    }
+
+    .sugerencias-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #1f1f1f;
+      border: 1px solid #00bcd4;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      z-index: 1001;
+    }
+
+    .sugerencias-container li {
+      padding: 0.5rem;
+      cursor: pointer;
+      border-bottom: 1px solid #333;
+    }
+
+    .sugerencias-container li:hover {
+      background-color: #00bcd4;
+      color: #000;
+    }
+
+    main {
+      padding: 7rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    a:hover {
+  text-shadow: 0 0 5px #00e5ff;
+  transition: text-shadow 0.3s ease;
+}
+
+
+    .carrusel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .carrusel img {
+      height: 200px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .carrusel img:hover {
+      transform: scale(1.05);
+    }
+
+    .bio {
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 10px;
+      line-height: 1.6;
+      box-shadow: 0 0 10px #00bcd4;
+    }
+
+    #contacto {
+      margin-top: 4rem;
+    }
+
+    .formulario-contacto {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00bcd4;
+    }
+
+    .formulario-contacto input,
+    .formulario-contacto textarea {
+      padding: 0.75rem;
+      border: 1px solid #00bcd4;
+      border-radius: 5px;
+      background: #121212;
+      color: #e0e0e0;
+      font-size: 1rem;
+    }
+
+    .formulario-contacto input:focus,
+    .formulario-contacto textarea:focus {
+      outline: none;
+      border-color: #00e5ff;
+      box-shadow: 0 0 8px #00e5ff66;
+    }
+
+    .formulario-contacto button {
+      padding: 0.75rem;
+      background: #00bcd4;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .formulario-contacto button:hover {
+      background: #00e5ff;
+    }
+
+
+
+
+    footer {
+  text-align: center;
+  padding: 1rem;
+  background: #1a1a1a;
+  color: #888;
+  border-top: 2px solid #00bcd4;
+}
+
+iframe
+
+{
+
+   border: 2px solid #00bcd4;
+
+
+}
+
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+
+
+
+
+   section {
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.8s ease-in-out both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    h2 {
+      border-bottom: 2px solid #00bcd4;
+      padding-bottom: 0.5rem;
+    }
+
+    #binario-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #0f0f0f;
+}
+
+
+
+.contenedor-centrado iframe,
+.contenedor-centrado img,
+.contenedor-centrado .boton-descarga {
+  max-width: 100%;
+  text-align: center;
+}
+
+.contenedor-centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.contenedor-centrado iframe {
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  border: none;
+  box-shadow: 0 0 10px #00bcd4;
+  border-radius: 8px;
+}
+
+.iframe-full {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.iframe-full iframe {
+  width: 88%;
+  max-width: 100%;
+  height: 500px;
+  border: none;
+  box-shadow: 0 0 10px #00bcd4;
+    border: 2px solid #00bcd4;
+}
+
+
+.carrusel img {
+  height: 350px; 
+  border-radius: 10px;
+  transition: transform 0.3s;
+    border: 2px solid #00bcd4;
+}
+
+.carrusel {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.carrusel img {
+  width: 100%;
+  max-width: 400px; 
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+    .botonn-descarga {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #00bcd4;
+  width:200%;
+  height:100%;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  text-align:center;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.boton-descarga:hover {
+  background-color: #00e5ff;
+}
+
+  </style>
+</head>
+<body>
+  <canvas id="binario-fondo"></canvas>
+  <header>
+    <div class="header-content">
+      <h1>Julio Pacheco | Tech Showcase</h1>
+      <div class="buscador">
+        <div class="input-wrapper">
+          <span class="icon">🔍</span>
+          <input type="text" id="busqueda" placeholder="Buscar sección..." oninput="mostrarSugerencias()" autocomplete="off" />
+          <ul id="sugerencias" class="sugerencias-container"></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="bio">
+      <h2>👨‍💻 Sobre Mí</h2>
+      <div class="bio">
+        <p>Soy Julio Pacheco, apasionado por la tecnología, la automatización y el diseño funcional. Me especializo en desarrollo web, scripting con CMD, y proyectos con Arduino. Me encanta fusionar estética con funcionalidad, creando experiencias visuales impactantes y útiles.</p>
+        <p>Mis intereses incluyen la ciberseguridad, el diseño oscuro con estilo cyberpunk, y la creación de herramientas personalizadas que reflejan mi identidad tecnológica.</p>
+      </div>
+    </section>
+
+    <section id="presentaciones">
+
+      <h2>📊 Ejemplos Presentaciones PowerPoint</h2>
+
+<br>
+
+     
+
+    
+          <div class="iframe-full">
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ0TjV05Gp_UVlWqf-cNONbi-xZr_Rg9lN4YYkhCF-aaF3nLkUyITU5PtNGYY1Zrw/pubembed?start=false&loop=false&delayms=3000" frameborder="0"  allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        <br>
+
+
+        <br>
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTy9aq0wHrPiHflexX4bIG1usSADKSGkPtzifeRVZt51ql3tld_pzV5YaYbk_hqAw/pubembed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+         </div>
+      
+
+
+    </section>
+
+    <section id="troyanos">
+      <h2>🛡️ Ejemplos de Troyanos Educativos</h2>
+      <div class="carrusel">
+
+        <div class="contenedor-centrado">
+          
+        <a href="https://download1526.mediafire.com/qjeyn88ntsng9bBmSJipLCYd5HC68sWihfM2VqOvPO_eyGwQEmej68c8Q_mKpcrbsMtt5eyRHRf5OsGBv53_uwb_urNHppq_pj-7Cfgxlox7iVWii7LEK97OVjCK0NJzfp1SO0uLLDJEnvCIp1_iJ1Rr7Un02Z2YHFQe1FwkqNEV/oss8kl337owfp7m/Spotify.apk" download class="botonn-descarga">📥 Descargar Spotify.apk <br>
+         (No instalar por seguridad)</a>
+
+         <br>
+
+        <a href="https://download1532.mediafire.com/nvkxlhsivqdgF55oQy36UwmoZurKoQYancRO4u56CemPwrJThlGFxgrgHkI0RGr6pmL2xgI-7i3xTWGR928MqyhGIA_8iGlLtclcNs0iBRraigUaenwDToDzrhH4QeiM0gE-YwQmde4AdiLeB2T08HZhIWN3yGJOWdconR7zKDaP/oybsh0n2zreyegb/Apagar+Sistema.bat" download class="botonn-descarga">📥 Descargar Comando CMD <br>
+         (No ejecutar por seguridad)</a>
+         
+         </div>
+        
+       
+      </div>
+    </section>
+
+    <section id="certificados">
+
+    <h2>📜 Certificados Udemy</h2>
+
+     <div class="contenedor-centrado">
+     
+      <div class="carrusel">
+        <img src="Certificado HTML.JPG" alt="Certificado 2" />
+        <img src="Certificado CSS.jpg" alt="Certificado 1" />
+      </div>
+     </div>
+    </section>
+
+<section id="contacto">
+  <h2>📬 Contacto</h2>
+  <div class="bio">
+    <p>¿Quieres ponerte en contacto conmigo? Aquí tienes mis redes y correo:</p>
+    <ul style="list-style: none; padding-left: 0;">
+      <li>📱 WhatsApp: <a href="https://wa.me/584124661153" target="_blank" style="color: #00bcd4;">+58 0412 466 1153</a></li>
+      <li>📸 Instagram: <a href="https://instagram.com/julitogk_" target="_blank" style="color: #00bcd4;">@julitogk_</a></li>
+      <li>📧 Correo: 
+        <span id="correo" style="cursor: pointer; color: #00bcd4; text-decoration: underline;" onclick="copiarCorreo()">jucepaflo09@gmail.com</span>
+        <span id="copiado" style="margin-left: 10px; color: #00e5ff; display: none;">¡Copiado!</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+    <footer>
+      <p>© 2025 Julio Pacheco | Desarrollador Tecnológico</p>
+    </footer>
+
+    <script>
+
+      function copiarCorreo() {
+    const correo = "jucepaflo09@gmail.com";
+    navigator.clipboard.writeText(correo).then(() => {
+      const mensaje = document.getElementById("copiado");
+      mensaje.style.display = "inline";
+      setTimeout(() => mensaje.style.display = "none", 2000);
+    });
+  }
+
+      const secciones = {
+        "presentaciones": "presentaciones",
+        "troyanos": "troyanos",
+        "certificados": "certificados",
+        "bio": "bio",
+        "sobre mí": "bio",
+        "contacto": "contacto"
+      };
+
+      function buscar() {
+        const query = document.getElementById("busqueda").value.toLowerCase();
+        for (let clave in secciones) {
+          if (clave.includes(query)) {
+            document.getElementById(secciones[clave]).scrollIntoView({ behavior: "smooth" });
+            return;
+          }
+        }
+      }
+
+      function mostrarSugerencias() {
+        const input = document.getElementById("busqueda");
+        const lista = document.getElementById("sugerencias");
+        const texto = input.value.toLowerCase();
+        lista.innerHTML = "";
+
+        const coincidencias = Object.keys(secciones).filter(s => s.includes(texto));
+        if (coincidencias.length > 0 && texto !== "") {
+          lista.style.display = "block";
+          coincidencias.forEach(s => {
+            const item = document.createElement("li");
+            item.textContent = s.charAt(0).toUpperCase() + s.slice(1);
+            item.onclick = () => {
+              input.value = s;
+              lista.style.display = "none";
+              buscar();
+            };
+            lista.appendChild(item);
+          });
+        } else {
+          lista.style.display = "none";
+        }
+      }
+
+  
+
+  const canvas = document.getElementById("binario-fondo");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letras = "01";
+  const fontSize = 14;
+  const columnas = canvas.width / fontSize;
+  const gotas = Array.from({ length: columnas }).fill(1);
+
+  function dibujar() {
+    ctx.fillStyle = "rgba(15, 15, 15, 0.1)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00bcd4";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < gotas.length; i++) {
+      const texto = letras[Math.floor(Math.random() * letras.length)];
+      ctx.fillText(texto, i * fontSize, gotas[i] * fontSize);
+
+      if (gotas[i] * fontSize > canvas.height || Math.random() > 0.975) {
+        gotas[i] = 0;
+      }
+      gotas[i]++;
+    }
+  }
+
+  setInterval(dibujar, 70);
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+
+    </script>
+  </main>
+</body>
+</html>
