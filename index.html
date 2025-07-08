@@ -396,6 +396,39 @@ iframe
   box-shadow: 0 0 10px #0ff;
 }
 
+.contacto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Para que se adapte en pantallas pequeñas */
+  gap: 20px;
+  padding: 20px;
+  background-color: #111;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #0ff;
+}
+
+.info-contacto {
+  flex: 1 1 300px;
+}
+
+.info-contacto p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.imagen-wrapper {
+  flex-shrink: 0;
+}
+
+.imagen-contacto {
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0ff;
+}    
+
 
   </style>
 </head>
@@ -506,7 +539,9 @@ iframe
       </li>
     </ul>
   </div>
-  <img src="image1 (2).png" alt="Imagen decorativa" class="imagen-contacto">
+  <div class="imagen-wrapper">
+    <img src="image1 (2).jpg" alt="Decoración" class="imagen-contacto">
+  </div>
 </section>
 
     <footer>
