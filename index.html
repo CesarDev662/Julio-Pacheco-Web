@@ -100,6 +100,18 @@
       color: #000;
     }
 
+    .sugerencias-container {
+  background-color: #1a1a1a;
+  border: 1px solid #5f5f5f;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.2);
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
     main {
       padding: 7rem 2rem 2rem;
       max-width: 1200px;
@@ -450,6 +462,27 @@ iframe
 
       
     }
+
+
+
+  .sugerencias-container li.ve {
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sugerencias-container li.ve:hover {
+  background-color: #2a2a2a;
+}  
+
+    input[type="search"] {
+  border-radius: 12px;
+  padding: 10px 15px;
+  border: 1px solid #5f5f5f;
+  background-color: #1a1a1a;
+  color: #fff;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
 
   </style>
 </head>
