@@ -332,6 +332,43 @@ iframe
   border:solid #00bcd4;
 }
 
+ .carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #0ff;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }   
+
   </style>
 </head>
 <body>
@@ -411,12 +448,17 @@ iframe
 
      <div class="contenedor-centrado">
      
-      <div class="carrusel">
-        
-        <img src="Certificado HTML.jpg" alt="Certificado 2" />
-        <img src="Certificado CSS.jpg" alt="Certificado 1" />
-        
-      </div>
+     <div class="carousel">
+    <div class="carousel-track">
+    <img src="Certificado HTML.jpg" alt="Certificado 1" class="carousel-image">
+    <img src="Certificado CSS.jpg" alt="Certificado 2" class="carousel-image">
+    <img src="Certificado Python.jpg" alt="Certificado 3" class="carousel-image">
+    <img src="Certificado Hacking.jpg" alt="Certificado 4" class="carousel-image">
+    </div>
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
+    </div>
+       
      </div>
     </section>
 
@@ -530,6 +572,31 @@ iframe
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
+
+
+      const track = document.querySelector('.carousel-track');
+const images = document.querySelectorAll('.carousel-image');
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+
+let index = 0;
+
+function updateCarousel() {
+  const width = images[0].clientWidth;
+  track.style.transform = `translateX(-${index * width}px)`;
+}
+
+nextBtn.addEventListener('click', () => {
+  index = (index + 1) % images.length;
+  updateCarousel();
+});
+
+prevBtn.addEventListener('click', () => {
+  index = (index - 1 + images.length) % images.length;
+  updateCarousel();
+});
+
+window.addEventListener('resize', updateCarousel);
 
 
     </script>
