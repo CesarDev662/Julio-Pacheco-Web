@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="styles.css">  
 </head>
 <body>
+  <div id="console"></div>
   <canvas id="binario-fondo"></canvas>
   
   <header>
@@ -123,6 +124,41 @@
   </footer>
 
   <script>
+    const texto = [
+  "Iniciando Julio-Pacheco-Web...",
+  "Cargando proyectos...",
+  "Estableciendo conexión con Arduino...",
+  "Importando diseño visual...",
+  "Sistema listo. Bienvenido."
+];
+
+let i = 0;
+let j = 0;
+let current = "";
+let isTyping = true;
+
+function typeEffect() {
+  if (i < texto.length) {
+    if (isTyping) {
+      current += texto[i][j];
+      document.getElementById("console").innerText = current + "|";
+      j++;
+      if (j === texto[i].length) {
+        current += "\n";
+        j = 0;
+        i++;
+        setTimeout(typeEffect, 600);
+      } else {
+        setTimeout(typeEffect, 50);
+      }
+    }
+  } else {
+    document.getElementById("console").innerText = current;
+  }
+}
+
+window.onload = typeEffect;
+    
     const canvas = document.getElementById("binario-fondo");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
