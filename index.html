@@ -124,116 +124,110 @@
   </footer>
 
   <script>
-    
-    const canvas = document.getElementById("binario-fondo");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Animación de escritura del título
+    const texto = "Julio Pacheco | Dev";
+    let i = 0;
+    const velocidad = 100;
 
-    const letters = "01";
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0ff";
-      ctx.font = fontSize + "px monospace";
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
+    function escribirTexto() {
+      if (i < texto.length) {
+        document.getElementById("titulo").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escribirTexto, velocidad);
       }
     }
 
-    setInterval(draw, 50);
+    // Funciones de búsqueda y sugerencias
+    const secciones = {
+      "presentaciones": "presentaciones",
+      "troyanos": "troyanos",
+      "certificados": "certificados",
+      "bio": "bio",
+      "sobre mí": "bio",
+      "contacto": "contacto",
+      "donacion": "donacion",
+      "donaciones": "donacion"
+    };
 
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function buscar() {
+      const query = document.getElementById("busqueda").value.toLowerCase();
+      for (let clave in secciones) {
+        if (clave.includes(query)) {
+          document.getElementById(secciones[clave]).scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+      }
+    }
+
+    function mostrarSugerencias() {
+      const input = document.getElementById("busqueda");
+      const lista = document.getElementById("sugerencias");
+      const texto = input.value.toLowerCase();
+      
+      lista.innerHTML = "";
+
+      if (texto === "") {
+        lista.style.display = "none";
+        return;
+      }
+
+      const coincidencias = Object.keys(secciones).filter(s => s.includes(texto));
+      
+      if (coincidencias.length > 0) {
+        lista.style.display = "block";
+        coincidencias.forEach(s => {
+          const item = document.createElement("li");
+          item.textContent = s.charAt(0).toUpperCase() + s.slice(1);
+          item.onclick = () => {
+            input.value = s;
+            lista.style.display = "none";
+            buscar();
+          };
+          item.style.cursor = "pointer";
+          item.style.padding = "8px 12px";
+          item.style.borderBottom = "1px solid #333";
+          item.addEventListener('mouseenter', () => {
+            item.style.backgroundColor = "#333";
+          });
+          item.addEventListener('mouseleave', () => {
+            item.style.backgroundColor = "transparent";
+          });
+          lista.appendChild(item);
+        });
+      } else {
+        lista.style.display = "none";
+      }
+    }
+
+    // Función para copiar correo
+    function copiarCorreo() {
+      const correo = "jucepaflo09@gmail.com";
+      navigator.clipboard.writeText(correo).then(() => {
+        const copiado = document.getElementById("copiado");
+        copiado.style.display = "inline";
+        setTimeout(() => {
+          copiado.style.display = "none";
+        }, 2000);
+      });
+    }
+
+    // Ocultar sugerencias al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.input-wrapper')) {
+        document.getElementById("sugerencias").style.display = "none";
+      }
     });
 
-    </script>
-
-    
-    <script>
-
-  const texto = "Julio Pacheco | Dev";
-  let i = 0;
-  const velocidad = 100;
-
-  function escribirTexto() {
-    if (i < texto.length) {
-      document.getElementById("titulo").innerHTML += texto.charAt(i);
-      i++;
-      setTimeout(escribirTexto, velocidad);
-    }
-  }
-
-  escribirTexto();  
-    
-    
-      const secciones = {
-        "presentaciones": "presentaciones",
-        "troyanos": "troyanos",
-        "certificados": "certificados",
-        "bio": "bio",
-        "sobre mí": "bio",
-        "contacto": "contacto"
-      };
-
-      function buscar() {
-        const query = document.getElementById("busqueda").value.toLowerCase();
-        for (let clave in secciones) {
-          if (clave.includes(query)) {
-            document.getElementById(secciones[clave]).scrollIntoView({ behavior: "smooth" });
-            return;
-          }
-        }
-      }
-
-      function mostrarSugerencias() {
-        const input = document.getElementById("busqueda");
-        const lista = document.getElementById("sugerencias");
-        const texto = input.value.toLowerCase();
-        lista.innerHTML = "";
-
-        const coincidencias = Object.keys(secciones).filter(s => s.includes(texto));
-        if (coincidencias.length > 0 && texto !== "") {
-          lista.style.display = "block";
-          coincidencias.forEach(s => {
-            const item = document.createElement("li");
-            item.textContent = s.charAt(0).toUpperCase() + s.slice(1);
-            item.onclick = () => {
-              input.value = s;
-              lista.style.display = "none";
-              buscar();
-            };
-            lista.appendChild(item);
-          });
-        } else {
-          lista.style.display = "none";
-        }
-      }
-
-  
-
+    // Animación de fondo binario
     const canvas = document.getElementById("binario-fondo");
     const ctx = canvas.getContext("2d");
-
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     const letras = "01";
     const fontSize = 14;
-    const columnas = canvas.width / fontSize;
-    const gotas = Array.from({ length: columnas }).fill(1);
+    const columnas = Math.floor(canvas.width / fontSize);
+    const gotas = Array(columnas).fill(1);
 
     function dibujar() {
       ctx.fillStyle = "rgba(15, 15, 15, 0.1)";
@@ -260,6 +254,7 @@
       canvas.height = window.innerHeight;
     });
 
+    // Carrusel de certificados
     const track = document.querySelector('.carousel-track');
     const images = document.querySelectorAll('.carousel-image');
     const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -284,18 +279,18 @@
 
     window.addEventListener('resize', updateCarousel);
 
+    // Animación de fade-in
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));      
-  </script>
-  
-  <script>
-    window.onload = () => {
-      document.getElementById("loginModal").style.display = "flex";
-    };
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Inicializar al cargar la página
+    window.addEventListener('load', () => {
+      escribirTexto();
+    });
   </script>
 </body>
 </html>
