@@ -24,13 +24,6 @@ function draw() {
     drops[i]++;
   }
 }
-
-setInterval(draw, 50);
-
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});  
       
     const secciones = {
         "presentaciones": "presentaciones",
@@ -146,7 +139,3 @@ window.addEventListener('resize', updateCarousel);
     });
   });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));        
-
-window.onload = () => {
-  document.getElementById("loginModal").style.display = "flex";
-};
