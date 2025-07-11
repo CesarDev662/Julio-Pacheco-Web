@@ -488,6 +488,33 @@ iframe
 </head>
 <body>
   <canvas id="binario-fondo"></canvas>
+<!-- Botones de acción -->
+<div class="auth-buttons">
+  <button onclick="abrirModalRegistro()">Registrarse</button>
+  <button onclick="abrirModalLogin()">Iniciar Sesión</button>
+</div>
+
+<!-- Modal de Registro -->
+<div id="registroModal" class="modal">
+  <form id="registroForm" class="modal-content">
+    <h2>🆕 Registro</h2>
+    <input type="text" id="regUsuario" placeholder="Usuario" required>
+    <input type="email" id="regCorreo" placeholder="Correo" required>
+    <input type="password" id="regClave" placeholder="Contraseña" required>
+    <button type="submit">Crear cuenta</button>
+  </form>
+</div>
+
+<!-- Modal de Login -->
+<div id="loginModal" class="modal">
+  <form id="loginForm" class="modal-content">
+    <h2>🔐 Inicio de Sesión</h2>
+    <input type="text" id="usuario" placeholder="Usuario" required>
+    <input type="email" id="correo" placeholder="Correo" required>
+    <input type="password" id="clave" placeholder="Contraseña" required>
+    <button type="submit">Ingresar</button>
+  </form>
+</div>
   <header>
     <div class="header-content">
       <h1>Julio Pacheco</h1>
@@ -628,6 +655,54 @@ iframe
 
     <script>
 
+function abrirModalLogin() {
+  document.getElementById("loginModal").style.display = "flex";
+}
+function abrirModalRegistro() {
+  document.getElementById("registroModal").style.display = "flex";
+}
+
+// Registro
+document.getElementById("registroForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const datos = {
+    usuario: document.getElementById("regUsuario").value,
+    correo: document.getElementById("regCorreo").value,
+    clave: document.getElementById("regClave").value
+  };
+
+  fetch("registro.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos)
+  })
+  .then(res => res.text())
+  .then(mensaje => {
+    alert(mensaje);
+    document.getElementById("registroModal").style.display = "none";
+  });
+});
+
+// Login
+document.getElementById("loginForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const datos = {
+    usuario: document.getElementById("usuario").value,
+    correo: document.getElementById("correo").value,
+    clave: document.getElementById("clave").value
+  };
+
+  fetch("login.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(datos)
+  })
+  .then(res => res.text())
+  .then(mensaje => {
+    alert(mensaje);
+    document.getElementById("loginModal").style.display = "none";
+  });
+});
       function copiarCorreo() {
     const correo = "jucepaflo09@gmail.com";
     navigator.clipboard.writeText(correo).then(() => {
