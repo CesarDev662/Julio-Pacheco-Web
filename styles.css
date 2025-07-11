@@ -194,7 +194,7 @@
   text-align: center;
   padding: 1rem;
   background: #1a1a1a;
-  color: #888;
+  color: #fff;
   border-top: 2px solid #00bcd4;
 }
 
@@ -497,7 +497,7 @@ iframe
   color: #1f1f1f;
 }
 
-/* Estilos para la sección OSINT */
+
 .osint-container {
   max-width: 1200px;
   margin: 0 auto;
