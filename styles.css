@@ -214,17 +214,6 @@ iframe
     }
 
 
-  #console {
-  font-family: 'Courier New', monospace;
-  color: #00ff00;
-  background-color: black;
-  padding: 20px;
-  font-size: 16px;
-  height: 150px;
-  overflow: hidden;
-  white-space: pre-wrap;
-}
-
 
    section {
   margin-bottom: 3rem;
