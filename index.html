@@ -601,6 +601,29 @@
         resultDiv.innerHTML = '<p style="color: #ff6b6b;">Error al codificar texto</p>';
       }
     }
+
+    function actualizarHora(ip) {
+  const ahora = new Date();
+  const hora = ahora.toLocaleTimeString();
+  document.getElementById("cuadro-alerta").textContent = `IP: ${ip} | Hora: ${hora}`;
+}
+
+
+fetch('https://api.ipify.org?format=json')
+  .then(response => response.json())
+  .then(data => {
+    actualizarHora(data.ip);
+    setInterval(() => actualizarHora(data.ip), 1000);
+  })
+  .catch(() => {
+    document.getElementById("cuadro-alerta").textContent = "Error al obtener IP";
+  });
+    
   </script>
+  
+<div id="cuadro-alerta">
+  Cargando IP y hora...
+</div>
+  
 </body>
 </html>
