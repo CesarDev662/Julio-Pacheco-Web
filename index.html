@@ -493,6 +493,7 @@ iframe
   <header>
     <div class="header-content">
       <h1>Julio Pacheco</h1>
+      <button onclick="abrirLogin()">Iniciar Sesión</button>
       <div class="buscador">
         <div class="input-wrapper">
           <span class="icon">🔍</span>
@@ -630,6 +631,10 @@ iframe
 
 
 <script>
+
+ function abrirLogin() {
+  document.getElementById("loginModal").style.display = "flex";
+} 
 const canvas = document.getElementById("binario-fondo");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -667,15 +672,6 @@ window.addEventListener("resize", () => {
 
     
     <script>
-
-      window.onload = () => {
-  document.getElementById("loginModal").style.display = "flex";
-};
-
-// Esto muestra el login al cargar
-window.onload = () => {
-  document.getElementById("loginModal").style.display = "flex";
-};
       
 // 🚀 Configuración real extraída de tu Firebase Console
 const firebaseConfig = {
@@ -865,5 +861,12 @@ window.addEventListener('resize', updateCarousel);
 
     </script>
   </main>
+  
+<script>
+window.onload = () => {
+  document.getElementById("loginModal").style.display = "flex";
+};
+</script>
+  
 </body>
 </html>
