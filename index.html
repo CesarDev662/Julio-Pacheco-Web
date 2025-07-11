@@ -5,81 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Desarrollador Tecnológico">
   <title>Julio Pacheco |Dev</title>
-  <link rel="icon" type="text/ico" href="1320457.ico">
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
-  <script>
-    // 🚀 Configuración real extraída de tu Firebase Console
-const firebaseConfig = {
-  apiKey: "AIzaSyBbmwAdXZDiVMT50ArLuVBBaZ7Jh6-_Ygc",
-  authDomain: "base-e8dbf.firebaseapp.com",
-  projectId: "base-e8dbf",
-  storageBucket: "base-e8dbf.appspot.com",
-  messagingSenderId: "603155081037",
-  appId: "1:603155081037:web:f1e7637812c7fdb86c6e7e"
-};
-
-// 🔧 Inicializa Firebase
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-
-// 🆕 Registro de usuarios
-document.getElementById("registroForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const correo = document.getElementById("regCorreo").value;
-  const clave = document.getElementById("regClave").value;
-
-  auth.createUserWithEmailAndPassword(correo, clave)
-    .then(userCredential => {
-      alert("✅ Registro exitoso: " + userCredential.user.email);
-      document.getElementById("registroModal").style.display = "none";
-    })
-    .catch(error => {
-      alert("❌ Error: " + error.message);
-    });
-});
-
-// 🔐 Inicio de sesión
-document.getElementById("loginForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const correo = document.getElementById("correo").value;
-  const clave = document.getElementById("clave").value;
-
-  auth.signInWithEmailAndPassword(correo, clave)
-    .then(userCredential => {
-      alert("🎉 Bienvenido: " + userCredential.user.email);
-      document.getElementById("loginModal").style.display = "none";
-    })
-    .catch(error => {
-      alert("⚠️ Error al iniciar sesión: " + error.message);
-    });
-});
-
-// 🔄 Detectar sesión activa
-auth.onAuthStateChanged(user => {
-  if (user) {
-    console.log("🔓 Sesión activa: " + user.email);
-    // Aquí puedes mostrar contenido secreto o activar zonas exclusivas
-  } else {
-    console.log("🔒 Sin sesión activa");
-  }
-});
-function abrirModalLogin() {
-  document.getElementById("loginModal").style.display = "flex";
-}
-function abrirModalRegistro() {
-  document.getElementById("registroModal").style.display = "flex";
-}
-      
-      function copiarCorreo() {
-    const correo = "jucepaflo09@gmail.com";
-    navigator.clipboard.writeText(correo).then(() => {
-      const mensaje = document.getElementById("copiado");
-      mensaje.style.display = "inline";
-      setTimeout(() => mensaje.style.display = "none", 2000);
-    });
-  }
-  </script>  
+  <link rel="icon" type="text/ico" href="1320457.ico">  
   <style>
     body {
       margin: 0;
@@ -487,7 +413,7 @@ iframe
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Para que se adapte en pantallas pequeñas */
+  flex-wrap: wrap; 
   gap: 20px;
   padding: 20px;
   background-color: #111;
@@ -565,7 +491,6 @@ iframe
   <header>
     <div class="header-content">
       <h1>Julio Pacheco</h1>
-      <button onclick="abrirLogin()">Iniciar Sesión</button>
       <div class="buscador">
         <div class="input-wrapper">
           <span class="icon">🔍</span>
@@ -704,9 +629,6 @@ iframe
 
 <script>
 
- function abrirLogin() {
-  document.getElementById("loginModal").style.display = "flex";
-} 
 const canvas = document.getElementById("binario-fondo");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
