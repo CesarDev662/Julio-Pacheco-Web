@@ -476,6 +476,26 @@ iframe
 
 
  }       
-        
+
+.ul-search {
+  display: block !important;
+  background-color: #1f1f1f;
+  border: 1px solid #00ff99;
+  list-style: none;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  font-family: monospace;
+}
+.search-item {
+  padding: 8px;
+  color: #00ff99;
+  cursor: pointer;
+}
+.search-item:hover {
+  background-color: #00ff99;
+  color: #1f1f1f;
+}
+
 
 
