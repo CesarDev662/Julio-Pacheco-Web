@@ -734,14 +734,14 @@ iframe
       bottom: 5px;
       right: 5px;
       background-color: black;
-      color: red;
+      color: #00bcd4;
       font-family: monospace;
       font-size: 13px;
       padding: 6px 10px;
       border: 1px solid crimson;
       border-radius: 4px;
       z-index: 9999;
-      box-shadow: 0 0 8px red;
+      box-shadow: 0 0 8px #00bcd4;
     }
 
 
