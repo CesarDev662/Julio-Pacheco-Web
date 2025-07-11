@@ -729,5 +729,19 @@ iframe
   }
 }
 
+   #cuadro-alerta {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      background-color: black;
+      color: red;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 6px 10px;
+      border: 1px solid crimson;
+      border-radius: 4px;
+      z-index: 9999;
+      box-shadow: 0 0 8px red;
+    }
 
 
