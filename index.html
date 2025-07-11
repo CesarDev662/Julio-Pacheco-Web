@@ -631,6 +631,11 @@ iframe
 
     <script>
 
+// Esto muestra el login al cargar
+window.onload = () => {
+  document.getElementById("loginModal").style.display = "flex";
+};
+      
 // 🚀 Configuración real extraída de tu Firebase Console
 const firebaseConfig = {
   apiKey: "AIzaSyBbmwAdXZDiVMT50ArLuVBBaZ7Jh6-_Ygc",
