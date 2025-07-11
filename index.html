@@ -487,34 +487,10 @@ iframe
   </style>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js"></script>
+
   <canvas id="binario-fondo"></canvas>
-<!-- Botones de acción -->
-<div class="auth-buttons">
-  <button onclick="abrirModalRegistro()">Registrarse</button>
-  <button onclick="abrirModalLogin()">Iniciar Sesión</button>
-</div>
-
-<!-- Modal de Registro -->
-<div id="registroModal" class="modal">
-  <form id="registroForm" class="modal-content">
-    <h2>🆕 Registro</h2>
-    <input type="text" id="regUsuario" placeholder="Usuario" required>
-    <input type="email" id="regCorreo" placeholder="Correo" required>
-    <input type="password" id="regClave" placeholder="Contraseña" required>
-    <button type="submit">Crear cuenta</button>
-  </form>
-</div>
-
-<!-- Modal de Login -->
-<div id="loginModal" class="modal">
-  <form id="loginForm" class="modal-content">
-    <h2>🔐 Inicio de Sesión</h2>
-    <input type="text" id="usuario" placeholder="Usuario" required>
-    <input type="email" id="correo" placeholder="Correo" required>
-    <input type="password" id="clave" placeholder="Contraseña" required>
-    <button type="submit">Ingresar</button>
-  </form>
-</div>
   <header>
     <div class="header-content">
       <h1>Julio Pacheco</h1>
@@ -655,54 +631,68 @@ iframe
 
     <script>
 
+// 🚀 Configuración real extraída de tu Firebase Console
+const firebaseConfig = {
+  apiKey: "AIzaSyBbmwAdXZDiVMT50ArLuVBBaZ7Jh6-_Ygc",
+  authDomain: "base-e8dbf.firebaseapp.com",
+  projectId: "base-e8dbf",
+  storageBucket: "base-e8dbf.appspot.com",
+  messagingSenderId: "603155081037",
+  appId: "1:603155081037:web:f1e7637812c7fdb86c6e7e"
+};
+
+// 🔧 Inicializa Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// 🆕 Registro de usuarios
+document.getElementById("registroForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const correo = document.getElementById("regCorreo").value;
+  const clave = document.getElementById("regClave").value;
+
+  auth.createUserWithEmailAndPassword(correo, clave)
+    .then(userCredential => {
+      alert("✅ Registro exitoso: " + userCredential.user.email);
+      document.getElementById("registroModal").style.display = "none";
+    })
+    .catch(error => {
+      alert("❌ Error: " + error.message);
+    });
+});
+
+// 🔐 Inicio de sesión
+document.getElementById("loginForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const correo = document.getElementById("correo").value;
+  const clave = document.getElementById("clave").value;
+
+  auth.signInWithEmailAndPassword(correo, clave)
+    .then(userCredential => {
+      alert("🎉 Bienvenido: " + userCredential.user.email);
+      document.getElementById("loginModal").style.display = "none";
+    })
+    .catch(error => {
+      alert("⚠️ Error al iniciar sesión: " + error.message);
+    });
+});
+
+// 🔄 Detectar sesión activa
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log("🔓 Sesión activa: " + user.email);
+    // Aquí puedes mostrar contenido secreto o activar zonas exclusivas
+  } else {
+    console.log("🔒 Sin sesión activa");
+  }
+});
 function abrirModalLogin() {
   document.getElementById("loginModal").style.display = "flex";
 }
 function abrirModalRegistro() {
   document.getElementById("registroModal").style.display = "flex";
 }
-
-// Registro
-document.getElementById("registroForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const datos = {
-    usuario: document.getElementById("regUsuario").value,
-    correo: document.getElementById("regCorreo").value,
-    clave: document.getElementById("regClave").value
-  };
-
-  fetch("registro.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(datos)
-  })
-  .then(res => res.text())
-  .then(mensaje => {
-    alert(mensaje);
-    document.getElementById("registroModal").style.display = "none";
-  });
-});
-
-// Login
-document.getElementById("loginForm").addEventListener("submit", e => {
-  e.preventDefault();
-  const datos = {
-    usuario: document.getElementById("usuario").value,
-    correo: document.getElementById("correo").value,
-    clave: document.getElementById("clave").value
-  };
-
-  fetch("login.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(datos)
-  })
-  .then(res => res.text())
-  .then(mensaje => {
-    alert(mensaje);
-    document.getElementById("loginModal").style.display = "none";
-  });
-});
+      
       function copiarCorreo() {
     const correo = "jucepaflo09@gmail.com";
     navigator.clipboard.writeText(correo).then(() => {
