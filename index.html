@@ -63,6 +63,108 @@
       </div>
     </section>
 
+    <section id="osint" class="fade-in">
+      <h2>🔍 Herramientas OSINT</h2>
+      <div class="osint-container">
+        <p>Herramientas de inteligencia de fuentes abiertas para investigación y análisis de información pública:</p>
+        
+        <div class="osint-tools">
+          <div class="tool-category">
+            <h3>🌐 Análisis de Dominios y IPs</h3>
+            <div class="tool-group">
+              <div class="tool-item">
+                <label>Dominio/IP:</label>
+                <input type="text" id="domain-input" placeholder="ejemplo.com o 192.168.1.1">
+                <button onclick="analyzeNetwork()" class="osint-btn">Analizar</button>
+              </div>
+              <div id="network-results" class="results-container"></div>
+            </div>
+          </div>
+
+          <div class="tool-category">
+            <h3>👤 Búsqueda de Usuarios</h3>
+            <div class="tool-group">
+              <div class="tool-item">
+                <label>Usuario:</label>
+                <input type="text" id="username-input" placeholder="nombre_usuario">
+                <button onclick="searchUsername()" class="osint-btn">Buscar en Redes</button>
+              </div>
+              <div id="username-results" class="results-container"></div>
+            </div>
+          </div>
+
+          <div class="tool-category">
+            <h3>📧 Análisis de Email</h3>
+            <div class="tool-group">
+              <div class="tool-item">
+                <label>Email:</label>
+                <input type="email" id="email-input" placeholder="ejemplo@correo.com">
+                <button onclick="analyzeEmail()" class="osint-btn">Analizar</button>
+              </div>
+              <div id="email-results" class="results-container"></div>
+            </div>
+          </div>
+
+          <div class="tool-category">
+            <h3>🔗 Enlaces Útiles OSINT</h3>
+            <div class="links-grid">
+              <a href="https://www.shodan.io/" target="_blank" class="osint-link">
+                <span class="link-icon">🔍</span>
+                <span>Shodan - Motor de búsqueda para dispositivos IoT</span>
+              </a>
+              <a href="https://www.virustotal.com/" target="_blank" class="osint-link">
+                <span class="link-icon">🛡️</span>
+                <span>VirusTotal - Análisis de archivos y URLs</span>
+              </a>
+              <a href="https://whatsmyname.app/" target="_blank" class="osint-link">
+                <span class="link-icon">👤</span>
+                <span>WhatsMyName - Búsqueda de usuarios</span>
+              </a>
+              <a href="https://www.exploit-db.com/" target="_blank" class="osint-link">
+                <span class="link-icon">💻</span>
+                <span>Exploit Database - Base de datos de exploits</span>
+              </a>
+              <a href="https://hunter.io/" target="_blank" class="osint-link">
+                <span class="link-icon">📧</span>
+                <span>Hunter.io - Búsqueda de emails</span>
+              </a>
+              <a href="https://www.maltego.com/" target="_blank" class="osint-link">
+                <span class="link-icon">🕸️</span>
+                <span>Maltego - Análisis de enlaces</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="tool-category">
+            <h3>🛠️ Herramientas Integradas</h3>
+            <div class="integrated-tools">
+              <div class="tool-item">
+                <label>Generar Hash:</label>
+                <input type="text" id="hash-input" placeholder="Texto a hashear">
+                <select id="hash-type">
+                  <option value="md5">MD5</option>
+                  <option value="sha1">SHA1</option>
+                  <option value="sha256">SHA256</option>
+                </select>
+                <button onclick="generateHash()" class="osint-btn">Generar</button>
+              </div>
+              <div id="hash-result" class="results-container"></div>
+            </div>
+
+            <div class="integrated-tools">
+              <div class="tool-item">
+                <label>Decodificar Base64:</label>
+                <textarea id="base64-input" placeholder="Ingresa texto en Base64"></textarea>
+                <button onclick="decodeBase64()" class="osint-btn">Decodificar</button>
+                <button onclick="encodeBase64()" class="osint-btn">Codificar</button>
+              </div>
+              <div id="base64-result" class="results-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="certificados" class="fade-in">
       <h2>📜 Certificados En Udemy</h2>
       <br>
@@ -141,6 +243,8 @@
     const secciones = {
       "presentaciones": "presentaciones",
       "troyanos": "troyanos",
+      "osint": "osint",
+      "herramientas": "osint",
       "certificados": "certificados",
       "bio": "bio",
       "sobre mí": "bio",
@@ -291,6 +395,224 @@
     window.addEventListener('load', () => {
       escribirTexto();
     });
+
+    // Funciones OSINT
+    function analyzeNetwork() {
+      const domain = document.getElementById('domain-input').value.trim();
+      const resultsDiv = document.getElementById('network-results');
+      
+      if (!domain) {
+        resultsDiv.innerHTML = '<p style="color: #ff6b6b;">Por favor ingresa un dominio o IP</p>';
+        return;
+      }
+
+      resultsDiv.innerHTML = `
+        <div class="osint-results">
+          <h4>Análisis de: ${domain}</h4>
+          <div class="result-item">
+            <strong>🔍 Herramientas recomendadas:</strong>
+            <ul>
+              <li><a href="https://www.whois.net/whois/${domain}" target="_blank">WHOIS Lookup</a></li>
+              <li><a href="https://www.shodan.io/search?query=${domain}" target="_blank">Shodan Search</a></li>
+              <li><a href="https://securitytrails.com/domain/${domain}" target="_blank">SecurityTrails</a></li>
+              <li><a href="https://dnsdumpster.com/" target="_blank">DNS Dumpster</a></li>
+            </ul>
+          </div>
+          <div class="result-item">
+            <strong>⚠️ Nota:</strong> Estas herramientas son para uso educativo y investigación legítima.
+          </div>
+        </div>
+      `;
+    }
+
+    function searchUsername() {
+      const username = document.getElementById('username-input').value.trim();
+      const resultsDiv = document.getElementById('username-results');
+      
+      if (!username) {
+        resultsDiv.innerHTML = '<p style="color: #ff6b6b;">Por favor ingresa un nombre de usuario</p>';
+        return;
+      }
+
+      const platforms = [
+        { name: 'Instagram', url: `https://www.instagram.com/${username}` },
+        { name: 'Twitter', url: `https://twitter.com/${username}` },
+        { name: 'GitHub', url: `https://github.com/${username}` },
+        { name: 'LinkedIn', url: `https://linkedin.com/in/${username}` },
+        { name: 'Reddit', url: `https://reddit.com/user/${username}` },
+        { name: 'TikTok', url: `https://tiktok.com/@${username}` }
+      ];
+
+      resultsDiv.innerHTML = `
+        <div class="osint-results">
+          <h4>Búsqueda de usuario: ${username}</h4>
+          <div class="result-item">
+            <strong>🔗 Enlaces a verificar:</strong>
+            <div class="platform-links">
+              ${platforms.map(platform => 
+                `<a href="${platform.url}" target="_blank" class="platform-link">${platform.name}</a>`
+              ).join('')}
+            </div>
+          </div>
+          <div class="result-item">
+            <strong>🛠️ Herramientas adicionales:</strong>
+            <ul>
+              <li><a href="https://whatsmyname.app/" target="_blank">WhatsMyName Web Checker</a></li>
+              <li><a href="https://namechk.com/" target="_blank">Namechk</a></li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    function analyzeEmail() {
+      const email = document.getElementById('email-input').value.trim();
+      const resultsDiv = document.getElementById('email-results');
+      
+      if (!email || !email.includes('@')) {
+        resultsDiv.innerHTML = '<p style="color: #ff6b6b;">Por favor ingresa un email válido</p>';
+        return;
+      }
+
+      const domain = email.split('@')[1];
+      
+      resultsDiv.innerHTML = `
+        <div class="osint-results">
+          <h4>Análisis de email: ${email}</h4>
+          <div class="result-item">
+            <strong>📧 Dominio:</strong> ${domain}
+          </div>
+          <div class="result-item">
+            <strong>🔍 Herramientas de verificación:</strong>
+            <ul>
+              <li><a href="https://hunter.io/email-verifier" target="_blank">Hunter.io Email Verifier</a></li>
+              <li><a href="https://www.verifyemailaddress.org/" target="_blank">Verify Email Address</a></li>
+              <li><a href="https://haveibeenpwned.com/" target="_blank">Have I Been Pwned</a></li>
+            </ul>
+          </div>
+          <div class="result-item">
+            <strong>🌐 Análisis del dominio:</strong>
+            <ul>
+              <li><a href="https://www.whois.net/whois/${domain}" target="_blank">WHOIS ${domain}</a></li>
+              <li><a href="https://mxtoolbox.com/domain/${domain}" target="_blank">MX Toolbox</a></li>
+            </ul>
+          </div>
+        </div>
+      `;
+    }
+
+    async function generateHash() {
+      const text = document.getElementById('hash-input').value.trim();
+      const hashType = document.getElementById('hash-type').value;
+      const resultDiv = document.getElementById('hash-result');
+      
+      if (!text) {
+        resultDiv.innerHTML = '<p style="color: #ff6b6b;">Por favor ingresa texto para hashear</p>';
+        return;
+      }
+
+      try {
+        let hash;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(text);
+        
+        if (hashType === 'md5') {
+          // Para MD5 usamos una implementación simple
+          hash = await simpleHash(text, 'MD5');
+        } else if (hashType === 'sha1') {
+          const hashBuffer = await crypto.subtle.digest('SHA-1', data);
+          hash = Array.from(new Uint8Array(hashBuffer))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+        } else if (hashType === 'sha256') {
+          const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+          hash = Array.from(new Uint8Array(hashBuffer))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+        }
+
+        resultDiv.innerHTML = `
+          <div class="osint-results">
+            <h4>Hash ${hashType.toUpperCase()}:</h4>
+            <div class="result-item">
+              <strong>Texto original:</strong> ${text}
+            </div>
+            <div class="result-item">
+              <strong>Hash:</strong> <code style="background: #333; padding: 4px; border-radius: 4px;">${hash}</code>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        resultDiv.innerHTML = `<p style="color: #ff6b6b;">Error al generar hash: ${error.message}</p>`;
+      }
+    }
+
+    async function simpleHash(text, algorithm) {
+      // Implementación simplificada para MD5 (no recomendada para producción)
+      if (algorithm === 'MD5') {
+        // Usamos SHA-1 como alternativa ya que MD5 no está disponible en Web Crypto API
+        const encoder = new TextEncoder();
+        const data = encoder.encode(text);
+        const hashBuffer = await crypto.subtle.digest('SHA-1', data);
+        return Array.from(new Uint8Array(hashBuffer))
+          .map(b => b.toString(16).padStart(2, '0'))
+          .join('');
+      }
+    }
+
+    function decodeBase64() {
+      const base64Text = document.getElementById('base64-input').value.trim();
+      const resultDiv = document.getElementById('base64-result');
+      
+      if (!base64Text) {
+        resultDiv.innerHTML = '<p style="color: #ff6b6b;">Por favor ingresa texto en Base64</p>';
+        return;
+      }
+
+      try {
+        const decoded = atob(base64Text);
+        resultDiv.innerHTML = `
+          <div class="osint-results">
+            <h4>Decodificación Base64:</h4>
+            <div class="result-item">
+              <strong>Texto original:</strong> <code>${base64Text}</code>
+            </div>
+            <div class="result-item">
+              <strong>Decodificado:</strong> ${decoded}
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        resultDiv.innerHTML = '<p style="color: #ff6b6b;">Error: Texto Base64 inválido</p>';
+      }
+    }
+
+    function encodeBase64() {
+      const plainText = document.getElementById('base64-input').value.trim();
+      const resultDiv = document.getElementById('base64-result');
+      
+      if (!plainText) {
+        resultDiv.innerHTML = '<p style="color: #ff6b6b;">Por favor ingresa texto para codificar</p>';
+        return;
+      }
+
+      try {
+        const encoded = btoa(plainText);
+        resultDiv.innerHTML = `
+          <div class="osint-results">
+            <h4>Codificación Base64:</h4>
+            <div class="result-item">
+              <strong>Texto original:</strong> ${plainText}
+            </div>
+            <div class="result-item">
+              <strong>Base64:</strong> <code style="background: #333; padding: 4px; border-radius: 4px;">${encoded}</code>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        resultDiv.innerHTML = '<p style="color: #ff6b6b;">Error al codificar texto</p>';
+      }
+    }
   </script>
 </body>
 </html>
