@@ -14,7 +14,7 @@
   
   <header>
     <div class="header-content">
-      <h1>Julio Pacheco</h1>
+      <h1 id="titulo">Julio Pacheco</h1>
       <div class="buscador">
         <div class="input-wrapper">
           <span class="icon">🔍</span>
@@ -163,6 +163,20 @@
 
     
     <script>
+
+  const texto = "Julio Pacheco | Dev";
+  let i = 0;
+  const velocidad = 100;
+
+  function escribirTexto() {
+    if (i < texto.length) {
+      document.getElementById("titulo").innerHTML += texto.charAt(i);
+      i++;
+      setTimeout(escribirTexto, velocidad);
+    }
+  }
+
+  escribirTexto();  
     
     const secciones = {
       "presentaciones": "presentaciones",
