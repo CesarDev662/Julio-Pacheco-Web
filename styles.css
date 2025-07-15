@@ -848,3 +848,21 @@ iframe
   justify-content: space-around;
   align-items: center;
 }
+
+.menu-overlay span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background: white;
+  transform-origin: center;
+}
+
+.menu-overlay span:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.menu-overlay span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
