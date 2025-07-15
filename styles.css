@@ -844,3 +844,9 @@ iframe
 .header-content .buscador {
   margin-left: auto;
 }
+
+.header-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
