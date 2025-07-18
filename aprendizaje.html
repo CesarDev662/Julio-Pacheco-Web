@@ -7,6 +7,7 @@
   <title>Julio Pacheco | Aprendizaje</title>
   <link rel="icon" type="text/ico" href="1320457.ico">
   <link rel="stylesheet" type="text/css" href="styles.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     
     #quiz-container {
@@ -98,11 +99,11 @@ window.onload = mostrarPregunta;
   
   <header>
     <div class="header-content" style="display: flex; align-items: center;">
-      <a href="index.html" style="font-size:30px;">🏠</a>
+      <a href="index.html" style="font-size:30px;"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
        <h1 id="titulo" style="letter-spacing:2.5px;">APRENDIZAJE</h1>
         <div class="buscador">
          <div class="input-wrapper">
-          <span class="icon">🔍</span>
+          <span class="icon"><i class="fa-solid fa-magnifying-glass lupa-icon" style="color: #ffffff;"></i></span>
           <input type="text" id="busqueda" placeholder="Buscar sección..." oninput="mostrarSugerencias()" autocomplete="off" />
           <ul id="sugerencias" class="sugerencias-container"></ul>
         </div>
