@@ -810,9 +810,9 @@ iframe
   text-decoration: none;
   font-weight: bold;
   border-style:solid;
-  border-color:#121c21;
+  border-color:#fff;
   transition: background 0.3s, color 0.3s;
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .menu-list li a:hover {
