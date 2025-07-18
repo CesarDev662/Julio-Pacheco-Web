@@ -36,8 +36,8 @@
 
     .buscador {
       display: flex;
-      align-items: center;
-    }
+      align-items: center
+ ;   }
 
     .input-wrapper {
       position: relative;
@@ -449,6 +449,7 @@ iframe
     {
 
       border: 2px solid #fff;
+      margin-top:5px;
 
       
     }
@@ -767,6 +768,29 @@ iframe
   z-index: 11;
   overflow: visible;
 }
+
+
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 10px; 
+  font-size: 16px;
+  border: 2px solid #444;
+  border-radius: 5px;
+  background-color: #111;
+  color: #fff;
+}
+
+.lupa-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ccc;
+  pointer-events: none;
+}
+
+
 
 .menu-icon span {
   display: block;
