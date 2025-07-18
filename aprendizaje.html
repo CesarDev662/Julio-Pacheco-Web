@@ -7,6 +7,89 @@
   <title>Julio Pacheco | Aprendizaje</title>
   <link rel="icon" type="text/ico" href="1320457.ico">
   <link rel="stylesheet" type="text/css" href="styles.css">  
+  <style>
+    
+    #quiz-container {
+  background: #0f0f0f;
+  border: 2px solid #00bcd4;
+  padding: 20px;
+  width: 300px;
+  font-family: 'Courier New', monospace;
+  color: #00bcd4;
+  box-shadow: 0 0 10px #00ffcc;
+}
+input, button {
+  margin-top: 10px;
+  width: 90%;
+  padding: 8px;
+  background: #1a1a1a;
+  color: #00bcd4;
+  border: 1px solid #00bcd4;
+}
+
+.centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#quiz-container {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+  </style>
+
+  <script>
+    
+
+const preguntas = [
+  { pregunta: "Se usa para insertar una imagen en la página.", respuesta: "img" },
+  { pregunta: "Representa un párrafo de texto.", respuesta: "p" },
+  { pregunta: "Encierra el título principal de una página.", respuesta: "h1" },
+  { pregunta: "Crea un enlace a otra página.", respuesta: "a" },
+  { pregunta: "Define una lista desordenada.", respuesta: "ul" },
+  { pregunta: "Elemento contenedor genérico sin semántica.", respuesta: "div" },
+  { pregunta: "Etiqueta para una celda de tabla.", respuesta: "td" }
+];
+
+let indice = 0;
+
+function mostrarPregunta() {
+  document.getElementById("question").textContent = preguntas[indice].pregunta;
+  document.getElementById("answer").value = "";
+  document.getElementById("feedback").textContent = "";
+}
+
+function checkAnswer() {
+  const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+  const feedback = document.getElementById("feedback");
+  const correcta = preguntas[indice].respuesta;
+
+  if (userAnswer === correcta) {
+    feedback.textContent = "✅ ¡Correcto!";
+    feedback.style.color = "#00ffe0";
+    setTimeout(() => {
+      indice++;
+      if (indice < preguntas.length) {
+        mostrarPregunta();
+      } else {
+        feedback.textContent = "🎉 ¡Juego terminado! Bien hecho.";
+        document.getElementById("question").textContent = "";
+        document.getElementById("answer").style.display = "none";
+        document.querySelector("button").style.display = "none";
+      }
+    }, 1500);
+  } else {
+    feedback.textContent = "❌ Incorrecto, intenta de nuevo.";
+    feedback.style.color = "red";
+  }
+}
+
+window.onload = mostrarPregunta;
+
+  </script>
 </head>
 <body>
 
@@ -32,6 +115,22 @@
       <h2>📚 Contenido de Aprendizaje</h2>
       <div class="bio">
         <p>Las herramientas esenciales para el desarrollo y aprendizaje de programación son fundamentales para cualquier persona que desee adentrarse en el mundo del desarrollo tecnológico, ya que cada una de estas aplicaciones te proporcionará las bases necesarias para iniciarte en este apasionante campo. Entre estas herramientas, el uso de control de versiones es crucial, ya que permite a los desarrolladores gestionar sus proyectos de manera eficiente y colaborar con otros programadores en un entorno de trabajo compartido. Además, los editores de texto son opciones populares que ofrecen flexibilidad y personalización para aquellos que prefieren un enfoque más ligero y directo en la escritura de código. Asimismo, el acceso a foros y comunidades en línea proporciona un espacio invaluable para resolver dudas, compartir conocimientos y conectarse con otros entusiastas de la programación, creando así un ecosistema de aprendizaje colaborativo que es vital para el crecimiento y desarrollo continuo en el ámbito tecnológico. En conjunto, estas herramientas no solo facilitan el aprendizaje de la programación, sino que también fomentan la creatividad y la innovación, preparando a los aspirantes a desarrolladores para enfrentar los desafíos del futuro digital.</p>
+
+<h2>Dinámica de aprendizaje:</h2>
+
+<div class="centro">
+ <div id="quiz-container">
+  <div id="quiz-container">
+  <h2>¿Qué etiqueta HTML es esta?</h2>
+  <p id="question">Se usa para insertar una imagen en la página.</p>
+  <input type="text" id="answer" placeholder="Escribe aquí la etiqueta...">
+  <button onclick="checkAnswer()">Comprobar</button>
+  <p id="feedback"></p>
+ </div>
+  </div>
+</div>
+
+
       </div>
     </section>
 
