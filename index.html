@@ -525,7 +525,7 @@
         const data = encoder.encode(text);
         
         if (hashType === 'md5') {
-          // Para MD5 usamos una implementación simple
+
           hash = await simpleHash(text, 'MD5');
         } else if (hashType === 'sha1') {
           const hashBuffer = await crypto.subtle.digest('SHA-1', data);
@@ -556,9 +556,9 @@
     }
 
     async function simpleHash(text, algorithm) {
-      // Implementación simplificada para MD5 (no recomendada para producción)
+
       if (algorithm === 'MD5') {
-        // Usamos SHA-1 como alternativa ya que MD5 no está disponible en Web Crypto API
+ 
         const encoder = new TextEncoder();
         const data = encoder.encode(text);
         const hashBuffer = await crypto.subtle.digest('SHA-1', data);
