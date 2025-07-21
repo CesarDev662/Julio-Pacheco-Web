@@ -31,7 +31,7 @@
     </nav> 
       <h1 id="titulo">Julio Pacheco</h1>
          
-      <div class="buscador search-container">
+      <div class="buscador">
         <div class="input-wrapper">
           <span class="icon"><i class="fa-solid fa-magnifying-glass lupa-icon" style="color: #ffffff;"></i></span>
           <input type="text" id="busqueda" placeholder="Buscar sección..." oninput="mostrarSugerencias()" autocomplete="off" />
@@ -311,7 +311,7 @@
       }
     }
 
-    // Función para copiar correo
+
     function copiarCorreo() {
       const correo = "jucepaflo09@gmail.com";
       navigator.clipboard.writeText(correo).then(() => {
@@ -323,14 +323,14 @@
       });
     }
 
-    // Ocultar sugerencias al hacer clic fuera
+
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.input-wrapper')) {
         document.getElementById("sugerencias").style.display = "none";
       }
     });
 
-    // Animación de fondo binario
+  
     const canvas = document.getElementById("binario-fondo");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -391,7 +391,7 @@
 
     window.addEventListener('resize', updateCarousel);
 
-    // Animación de fade-in
+    
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -399,12 +399,12 @@
     });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    // Inicializar al cargar la página
+   
     window.addEventListener('load', () => {
       escribirTexto();
     });
 
-    // Funciones OSINT
+    
     function analyzeNetwork() {
       const domain = document.getElementById('domain-input').value.trim();
       const resultsDiv = document.getElementById('network-results');
